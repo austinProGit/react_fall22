@@ -1,4 +1,5 @@
 import React from "react";
+import MainBody from "./MainBody";
 
 class Header extends React.Component{
     // constructor for state
@@ -16,6 +17,7 @@ class Header extends React.Component{
     // render method
     render(){
         const { linkText, linkUrl } = this.props
+        const name = this.state.name
         // this.props.linkText
         console.log(this.state)
         console.log(window.matchMedia('(prefers-color-scheme: dark)').matches)
@@ -31,12 +33,17 @@ class Header extends React.Component{
                     rel="noopener noreferrer">
                     {linkText}
                 </a>
+                <div>
+                    <h3>Your stateful name is: <i>{name}</i></h3>
+                    <input type="text" value={name} onChange={(e) => this.setState({name : e.target.value})}/>
+                </div>
                 <span>
                     You have clicked on the button {this.state.count} times!
                 </span>
                 <button onClick={() => this.setState({ count : this.state.count + 1})}>
                     Increment Count
                 </button>
+                <MainBody></MainBody>
             </header>            
         )
     }
