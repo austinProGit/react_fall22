@@ -1,19 +1,30 @@
-// create a functional component with hooks
-import React, { useState } from 'react';
+import Skills from "./Skills";
+import Projects from "./Projects";
+import Contact from "./Contact";
+import Experience from "./Experience";
+import React from "react";
 
-function MainBody() {
-    const [name, setName] = useState('');
-
-    function handleChange (e) {
-        setName(e.target.value);
+class MainBody extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = { 
+            count: 0, 
+            theme: window.matchMedia('(prefers-color-scheme: dark)').matches ? "dark" : "light"
+        }
     }
 
-    return(
-        <div>
-            <h3>Your name is: <i>{name}</i></h3>
-            <input type="text" value={name} onChange={handleChange}/>
-        </div>
-    )
+    render(){
+        return(
+            <>
+                <body className={`App-main-body ${this.state.theme} ${this.state.count}`}>
+                    <Skills></Skills>
+                    <Projects></Projects>
+                    <Experience></Experience>
+                    <Contact></Contact>
+                </body>       
+            </>     
+        )
+    }
 }
 
 export default MainBody
